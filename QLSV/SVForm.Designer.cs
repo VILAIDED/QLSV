@@ -1,7 +1,7 @@
 ﻿
 namespace QLSV
 {
-    partial class ListSV
+    partial class SVForm
     {
         /// <summary>
         /// Required designer variable.
