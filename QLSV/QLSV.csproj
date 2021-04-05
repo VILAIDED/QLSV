@@ -49,11 +49,11 @@
     <Compile Include="CBBItem.cs" />
     <Compile Include="CSDL.cs" />
     <Compile Include="CSDL_OOP.cs" />
-    <Compile Include="ListSV.cs">
+    <Compile Include="SVForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListSV.Designer.cs">
-      <DependentUpon>ListSV.cs</DependentUpon>
+    <Compile Include="SVForm.Designer.cs">
+      <DependentUpon>SVForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LSH.cs" />
     <Compile Include="Main.cs">
@@ -65,8 +65,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SV.cs" />
-    <EmbeddedResource Include="ListSV.resx">
-      <DependentUpon>ListSV.cs</DependentUpon>
+    <EmbeddedResource Include="SVForm.resx">
+      <DependentUpon>SVForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

@@ -30,15 +30,15 @@ namespace QLSV
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.cancel_btn = new System.Windows.Forms.Button();
+            this.ok_btn = new System.Windows.Forms.Button();
+            this.f_Radio = new System.Windows.Forms.RadioButton();
+            this.m_Radio = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ns_picker = new System.Windows.Forms.DateTimePicker();
+            this.lsh_cbb = new System.Windows.Forms.ComboBox();
+            this.txt_Name = new System.Windows.Forms.TextBox();
+            this.txt_MSSV = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,15 +48,15 @@ namespace QLSV
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.cancel_btn);
+            this.panel1.Controls.Add(this.ok_btn);
+            this.panel1.Controls.Add(this.f_Radio);
+            this.panel1.Controls.Add(this.m_Radio);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.ns_picker);
+            this.panel1.Controls.Add(this.lsh_cbb);
+            this.panel1.Controls.Add(this.txt_Name);
+            this.panel1.Controls.Add(this.txt_MSSV);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -66,47 +66,47 @@ namespace QLSV
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button2
+            // cancel_btn
             // 
-            this.button2.Location = new System.Drawing.Point(453, 308);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cancel_btn.Location = new System.Drawing.Point(453, 308);
+            this.cancel_btn.Name = "cancel_btn";
+            this.cancel_btn.Size = new System.Drawing.Size(75, 23);
+            this.cancel_btn.TabIndex = 12;
+            this.cancel_btn.Text = "Cancel";
+            this.cancel_btn.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ok_btn
             // 
-            this.button1.Location = new System.Drawing.Point(300, 308);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ok_btn.Location = new System.Drawing.Point(300, 308);
+            this.ok_btn.Name = "ok_btn";
+            this.ok_btn.Size = new System.Drawing.Size(75, 23);
+            this.ok_btn.TabIndex = 11;
+            this.ok_btn.Text = "OK";
+            this.ok_btn.UseVisualStyleBackColor = true;
+            this.ok_btn.Click += new System.EventHandler(this.ok_btn_Click);
             // 
-            // radioButton2
+            // f_Radio
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(624, 129);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(75, 21);
-            this.radioButton2.TabIndex = 10;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Female";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.f_Radio.AutoSize = true;
+            this.f_Radio.Location = new System.Drawing.Point(624, 129);
+            this.f_Radio.Name = "f_Radio";
+            this.f_Radio.Size = new System.Drawing.Size(75, 21);
+            this.f_Radio.TabIndex = 10;
+            this.f_Radio.TabStop = true;
+            this.f_Radio.Text = "Female";
+            this.f_Radio.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // m_Radio
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(508, 129);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(59, 21);
-            this.radioButton1.TabIndex = 9;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Male";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.m_Radio.AutoSize = true;
+            this.m_Radio.Location = new System.Drawing.Point(508, 129);
+            this.m_Radio.Name = "m_Radio";
+            this.m_Radio.Size = new System.Drawing.Size(59, 21);
+            this.m_Radio.TabIndex = 9;
+            this.m_Radio.TabStop = true;
+            this.m_Radio.Text = "Male";
+            this.m_Radio.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -117,34 +117,34 @@ namespace QLSV
             this.label5.TabIndex = 8;
             this.label5.Text = "Gender";
             // 
-            // dateTimePicker1
+            // ns_picker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(440, 49);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(259, 22);
-            this.dateTimePicker1.TabIndex = 7;
+            this.ns_picker.Location = new System.Drawing.Point(440, 49);
+            this.ns_picker.Name = "ns_picker";
+            this.ns_picker.Size = new System.Drawing.Size(259, 22);
+            this.ns_picker.TabIndex = 7;
             // 
-            // comboBox1
+            // lsh_cbb
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(107, 129);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 6;
+            this.lsh_cbb.FormattingEnabled = true;
+            this.lsh_cbb.Location = new System.Drawing.Point(107, 129);
+            this.lsh_cbb.Name = "lsh_cbb";
+            this.lsh_cbb.Size = new System.Drawing.Size(121, 24);
+            this.lsh_cbb.TabIndex = 6;
             // 
-            // textBox2
+            // txt_Name
             // 
-            this.textBox2.Location = new System.Drawing.Point(107, 89);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 22);
-            this.textBox2.TabIndex = 5;
+            this.txt_Name.Location = new System.Drawing.Point(107, 89);
+            this.txt_Name.Name = "txt_Name";
+            this.txt_Name.Size = new System.Drawing.Size(121, 22);
+            this.txt_Name.TabIndex = 5;
             // 
-            // textBox1
+            // txt_MSSV
             // 
-            this.textBox1.Location = new System.Drawing.Point(107, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 22);
-            this.textBox1.TabIndex = 4;
+            this.txt_MSSV.Location = new System.Drawing.Point(107, 49);
+            this.txt_MSSV.Name = "txt_MSSV";
+            this.txt_MSSV.Size = new System.Drawing.Size(121, 22);
+            this.txt_MSSV.TabIndex = 4;
             // 
             // label4
             // 
@@ -182,14 +182,15 @@ namespace QLSV
             this.label1.TabIndex = 0;
             this.label1.Text = "Thong tin SV";
             // 
-            // listSV
+            // SVForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
-            this.Name = "listSV";
+            this.Name = "SVForm";
             this.Text = "  ";
+            this.Load += new System.EventHandler(this.SVForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -199,15 +200,15 @@ namespace QLSV
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button cancel_btn;
+        private System.Windows.Forms.Button ok_btn;
+        private System.Windows.Forms.RadioButton f_Radio;
+        private System.Windows.Forms.RadioButton m_Radio;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DateTimePicker ns_picker;
+        private System.Windows.Forms.ComboBox lsh_cbb;
+        private System.Windows.Forms.TextBox txt_Name;
+        private System.Windows.Forms.TextBox txt_MSSV;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

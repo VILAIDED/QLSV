@@ -2,10 +2,10 @@ E:\Project\dotnet\QLSV\QLSV\bin\Debug\QLSV.exe.config
 E:\Project\dotnet\QLSV\QLSV\bin\Debug\QLSV.exe
 E:\Project\dotnet\QLSV\QLSV\bin\Debug\QLSV.pdb
 E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.csprojAssemblyReference.cache
-E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.ListSV.resources
 E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.Main.resources
 E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.Properties.Resources.resources
 E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.csproj.GenerateResource.cache
 E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.csproj.CoreCompileInputs.cache
 E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.exe
 E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.pdb
+E:\Project\dotnet\QLSV\QLSV\obj\Debug\QLSV.SVForm.resources

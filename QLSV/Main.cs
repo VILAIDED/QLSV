@@ -12,7 +12,7 @@ namespace QLSV
 {
     public partial class Main : Form
     {
-        private CSDL test;
+       
         public Main()
         {
             InitializeComponent();
@@ -74,7 +74,9 @@ namespace QLSV
         private void edit_btn_Click(object sender, EventArgs e)
         {
            SV sv = (SV) dataGridView1.CurrentRow.DataBoundItem;
-            MessageBox.Show(sv.ToString());
+            SVForm svForm = new SVForm(sv, this);
+            svForm.Show();
+
         }
     }
 }

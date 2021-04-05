@@ -79,6 +79,75 @@ namespace QLSV
                 NameLop = i["NameLop"].ToString()
             };
         }
+        public LSH GetLSHById(int ID_Lop)
+        {
+            LSH lsh = new LSH();
+            foreach(LSH ls in GetAllLSH())
+            {
+                if(ID_Lop == ls.ID_Lop)
+                {
+                    lsh = ls;
+                    break;
+                }
+            }
+            return lsh;
+        }
+        public void deleteSV(String MSSV)
+        {
+            DataTable dtSV = CSDL.Instance.DTSV.Clone();
+            for (int i = 0; i < dtSV.Rows.Count; i++)
+            {
+                DataRow dr = dtSV.Rows[i];
+                if (dr["MSSV"].Equals(MSSV))
+                {
+                    dr.Delete();
+                    break;
+                }
+            }
+            dtSV.AcceptChanges();
+            CSDL.Instance.DTSV = dtSV.Clone();
+        }
+        public void updateSV(SV sv)
+        {
+            DataTable dtSV = CSDL.Instance.DTSV.Clone();
+            for (int i = 0; i < dtSV.Rows.Count; i++)
+            {
+                DataRow dr = dtSV.Rows[i];
+                if (dr["MSSV"].Equals(sv.MSSV))
+                {
+
+                    dr["NameSV"] = sv.NameSV;
+                    dr["Gender"] = sv.Gender;
+                    dr["NS"] = sv.NS;
+                    dr["ID_Lop"] = sv.ID_Lop;
+                    break;
+                }
+            }
+            CSDL.Instance.DTSV = dtSV.Clone();
+        }
+        public void insertSV(SV sv)
+        {
+            DataRow drSV = CSDL.Instance.DTSV.NewRow();
+            drSV["MSSV"] = sv.MSSV;
+            drSV["NameSV"] = sv.NameSV;
+            drSV["Gender"] = sv.Gender;
+            drSV["NS"] = sv.NS;
+            drSV["ID_Lop"] = sv.ID_Lop;
+            CSDL.Instance.DTSV.Rows.Add(drSV);
+        }
+        public bool svIsExist(string MSSV)
+        {
+            bool check = false;
+            foreach(SV sv in GetAllSV())
+            {
+                if (sv.MSSV.Equals(MSSV))
+                {
+                    check = true;
+                    break;
+                }
+            }
+            return check;
+        }
         public List<SV> GetListSV(int ID_Lop,string Name)
         {
             List<SV> svList = new List<SV>();
