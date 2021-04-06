@@ -78,5 +78,12 @@ namespace QLSV
             svForm.Show();
 
         }
+
+        private void del_btn_Click(object sender, EventArgs e)
+        {
+            SV sv = (SV)dataGridView1.CurrentRow.DataBoundItem;
+            CSDL_OOP.Instance.deleteSV(sv.MSSV);
+            show_btn.PerformClick();
+        }
     }
 }

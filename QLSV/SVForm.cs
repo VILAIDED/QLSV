@@ -62,11 +62,11 @@ namespace QLSV
         {
             if (CSDL_OOP.Instance.svIsExist(sv.MSSV))
             {
-                //update
+                CSDL_OOP.Instance.updateSV(sv);
             }
             else
             {
-                //insert
+                CSDL_OOP.Instance.insertSV(sv);
             }
         }
     }

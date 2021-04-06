@@ -53,7 +53,7 @@ namespace QLSV
             dtSV.Columns.AddRange(new DataColumn[]
             {
 
-                new DataColumn("MSSV",typeof(int)),
+                new DataColumn("MSSV",typeof(String)),
                 new DataColumn("NameSV" ,typeof(String)),
                 new DataColumn("Gender",typeof(Boolean)),
                 new DataColumn("NS",typeof(DateTime)),

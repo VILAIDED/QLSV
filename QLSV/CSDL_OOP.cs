@@ -94,7 +94,8 @@ namespace QLSV
         }
         public void deleteSV(String MSSV)
         {
-            DataTable dtSV = CSDL.Instance.DTSV.Clone();
+            DataTable dtSV = new DataTable();
+            dtSV = CSDL.Instance.DTSV;
             for (int i = 0; i < dtSV.Rows.Count; i++)
             {
                 DataRow dr = dtSV.Rows[i];
@@ -105,7 +106,7 @@ namespace QLSV
                 }
             }
             dtSV.AcceptChanges();
-            CSDL.Instance.DTSV = dtSV.Clone();
+            CSDL.Instance.DTSV = dtSV;
         }
         public void updateSV(SV sv)
         {

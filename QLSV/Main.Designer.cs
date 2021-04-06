@@ -119,6 +119,7 @@ namespace QLSV
             this.del_btn.TabIndex = 9;
             this.del_btn.Text = "Del";
             this.del_btn.UseVisualStyleBackColor = true;
+            this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
             // 
             // sort_btn
             // 
