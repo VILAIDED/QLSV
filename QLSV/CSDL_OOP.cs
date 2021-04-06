@@ -110,7 +110,8 @@ namespace QLSV
         }
         public void updateSV(SV sv)
         {
-            DataTable dtSV = CSDL.Instance.DTSV.Clone();
+            DataTable dtSV = new DataTable();
+            dtSV = CSDL.Instance.DTSV;
             for (int i = 0; i < dtSV.Rows.Count; i++)
             {
                 DataRow dr = dtSV.Rows[i];
@@ -121,10 +122,12 @@ namespace QLSV
                     dr["Gender"] = sv.Gender;
                     dr["NS"] = sv.NS;
                     dr["ID_Lop"] = sv.ID_Lop;
+                    
                     break;
                 }
             }
-            CSDL.Instance.DTSV = dtSV.Clone();
+            dtSV.AcceptChanges();
+            CSDL.Instance.DTSV = dtSV;
         }
         public void insertSV(SV sv)
         {

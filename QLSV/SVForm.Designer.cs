@@ -75,6 +75,7 @@ namespace QLSV
             this.cancel_btn.TabIndex = 12;
             this.cancel_btn.Text = "Cancel";
             this.cancel_btn.UseVisualStyleBackColor = true;
+            this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
             // ok_btn
             // 

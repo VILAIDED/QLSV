@@ -13,9 +13,10 @@ namespace QLSV
         public bool Gender { get; set; }
         public DateTime NS { get; set; }
         public int ID_Lop { get; set; }
+        public SV() { NS = new DateTime(2000, 1, 1); }
         public override string ToString()
         {
-            return NameSV + " : " + MSSV;
+            return NameSV + " : " + MSSV + NS + " " + ID_Lop;
         }
     }
 }

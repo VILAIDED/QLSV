@@ -68,6 +68,8 @@ namespace QLSV
 
         private void add_btn_Click(object sender, EventArgs e)
         {
+            SVForm svForm = new SVForm(new SV(), this);
+            svForm.Show();
 
         }
 
