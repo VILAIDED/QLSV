@@ -96,9 +96,17 @@ namespace QLSV
         {
             DataTable dtSV = new DataTable();
             dtSV = CSDL.Instance.DTSV;
-            for (int i = 0; i < dtSV.Rows.Count; i++)
+          /*  for (int i = 0; i < dtSV.Rows.Count; i++)
             {
                 DataRow dr = dtSV.Rows[i];
+                if (dr["MSSV"].Equals(MSSV))
+                {
+                    dr.Delete();
+                    break;
+                }
+            }*/
+          foreach(DataRow dr in dtSV.Rows)
+            {
                 if (dr["MSSV"].Equals(MSSV))
                 {
                     dr.Delete();
@@ -112,9 +120,7 @@ namespace QLSV
         {
             DataTable dtSV = new DataTable();
             dtSV = CSDL.Instance.DTSV;
-            for (int i = 0; i < dtSV.Rows.Count; i++)
-            {
-                DataRow dr = dtSV.Rows[i];
+            foreach (DataRow dr in dtSV.Rows) {
                 if (dr["MSSV"].Equals(sv.MSSV))
                 {
 
@@ -122,10 +128,11 @@ namespace QLSV
                     dr["Gender"] = sv.Gender;
                     dr["NS"] = sv.NS;
                     dr["ID_Lop"] = sv.ID_Lop;
-                    
+
                     break;
                 }
             }
+        
             dtSV.AcceptChanges();
             CSDL.Instance.DTSV = dtSV;
         }

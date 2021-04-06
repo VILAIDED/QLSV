@@ -97,6 +97,7 @@ namespace QLSV
             this.f_Radio.TabStop = true;
             this.f_Radio.Text = "Female";
             this.f_Radio.UseVisualStyleBackColor = true;
+            this.f_Radio.CheckedChanged += new System.EventHandler(this.f_Radio_CheckedChanged);
             // 
             // m_Radio
             // 
@@ -108,6 +109,7 @@ namespace QLSV
             this.m_Radio.TabStop = true;
             this.m_Radio.Text = "Male";
             this.m_Radio.UseVisualStyleBackColor = true;
+            this.m_Radio.CheckedChanged += new System.EventHandler(this.m_Radio_CheckedChanged);
             // 
             // label5
             // 
@@ -185,8 +187,10 @@ namespace QLSV
             // 
             // SVForm
             // 
+            this.AcceptButton = this.ok_btn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancel_btn;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Name = "SVForm";

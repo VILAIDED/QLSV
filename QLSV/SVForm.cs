@@ -79,11 +79,28 @@ namespace QLSV
                 CSDL_OOP.Instance.insertSV(sv);
             }
             main.Refresh();
+            this.Close();
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void m_Radio_CheckedChanged(object sender, EventArgs e)
+        {
+            if(m_Radio.Checked == true)
+            {
+                sv.Gender = false;
+            }
+        }
+
+        private void f_Radio_CheckedChanged(object sender, EventArgs e)
+        {
+            if(f_Radio.Checked == true)
+            {
+                sv.Gender = true;
+            }
         }
     }
 }
