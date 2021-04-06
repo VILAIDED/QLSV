@@ -14,51 +14,18 @@ namespace QLSV
     { 
         private Main main;
         private SV sv;
-        public void testDele(SV sv)
+        public void passData(SV sv)
         {
             this.sv = sv;
         }
-        public void setCBB()
+        public SVForm(Main main)
         {
-            if (sv.MSSV == null)
-            {
-                foreach(LSH lsh in CSDL_OOP.Instance.GetAllLSH())
-                {
-                    lsh_cbb.Items.Add(new CBBItem
-                    {
-                        Value = lsh.ID_Lop,
-                        Text = lsh.NameLop
-                    });
-                }
 
-            }
-            else
-            {
-                LSH lsh = CSDL_OOP.Instance.GetLSHById(sv.ID_Lop);
-                lsh_cbb.Items.Add(new CBBItem { Value = lsh.ID_Lop, Text = lsh.NameLop });
-                
-            }
-            lsh_cbb.SelectedIndex = 0;
-
-        }
-        public SVForm(Main main) {
-       
             InitializeComponent();
             this.main = main;
-            
         }
-        private void setData()
-        {
-            sv.MSSV = txt_MSSV.Text;
-            sv.NameSV = txt_Name.Text;
-            sv.NS = ns_picker.Value;
-            CBBItem item = (CBBItem)lsh_cbb.SelectedItem;
-            sv.ID_Lop = item.Value;
-        }
-
         private void SVForm_Load(object sender, EventArgs e)
         {
-            
             if (sv.MSSV != null) txt_MSSV.ReadOnly = true;
             txt_MSSV.Text = sv.MSSV;
             txt_Name.Text = sv.NameSV;
@@ -72,8 +39,48 @@ namespace QLSV
                 f_Radio.Checked = true;
             }
             setCBB();
+
+        }
+        public void setCBB()
+        {
+            foreach (LSH lsh in CSDL_OOP.Instance.GetAllLSH())
+            {
+                lsh_cbb.Items.Add(new CBBItem
+                {
+                    Value = lsh.ID_Lop,
+                    Text = lsh.NameLop
+                });
+            }
+            if (sv.MSSV == null)
+            {
+                lsh_cbb.SelectedIndex = 0;
+
+            }
+            else
+            {
+                for(int i = 0; i < lsh_cbb.Items.Count; i++)
+                {
+                    CBBItem cb = (CBBItem)lsh_cbb.Items[i];
+                    if(cb.Value == sv.ID_Lop)
+                    {
+                        lsh_cbb.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
             
         }
+        
+        private void setData()
+        {
+            sv.MSSV = txt_MSSV.Text;
+            sv.NameSV = txt_Name.Text;
+            sv.NS = ns_picker.Value;
+            CBBItem item = (CBBItem)lsh_cbb.SelectedItem;
+            sv.ID_Lop = item.Value;
+        }
+
+        
         private bool validation()
         {
             bool check = false;

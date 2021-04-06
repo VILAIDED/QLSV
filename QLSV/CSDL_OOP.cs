@@ -34,6 +34,43 @@ namespace QLSV
            
 
         }
+        public List<SV> GetListSV(int ID_Lop, string Name)
+        {
+            List<SV> svList = new List<SV>();
+            if ("".Equals(Name))
+            {
+                foreach (SV sv in GetAllSV())
+                {
+                    if (sv.ID_Lop == ID_Lop)
+                    {
+                        svList.Add(sv);
+                    }
+                }
+            }
+            else
+            {
+                foreach (SV sv in GetAllSV())
+                {
+                    if (ID_Lop == 0)
+                    {
+
+                        if (sv.NameSV.Equals(Name))
+                        {
+                            svList.Add(sv);
+                        }
+                    }
+                    else
+                    {
+                        if (sv.ID_Lop == ID_Lop && sv.NameSV.Equals(Name))
+                        {
+                            svList.Add(sv);
+                        }
+                    }
+                }
+            }
+            return svList;
+
+        }
         public List<SV> GetAllSV()
         {
             List<SV> svList = new List<SV>();
@@ -95,7 +132,7 @@ namespace QLSV
         public SV getSVById(string mssv)
         {
             SV sv = new SV();
-            foreach(SV s in GetAllSV())
+            foreach (SV s in GetAllSV())
             {
                 if (mssv.Equals(s.MSSV))
                 {
@@ -172,42 +209,6 @@ namespace QLSV
             }
             return check;
         }
-        public List<SV> GetListSV(int ID_Lop,string Name)
-        {
-            List<SV> svList = new List<SV>();
-            if ("".Equals(Name))
-            {
-                foreach (SV sv in GetAllSV())
-                {
-                    if (sv.ID_Lop == ID_Lop)
-                    {
-                        svList.Add(sv);
-                    }
-            }
-            }
-            else
-            {
-                foreach (SV sv in GetAllSV())
-                {
-                    if (ID_Lop == 0)
-                    {
-
-                        if (sv.NameSV.Equals(Name))
-                        {
-                            svList.Add(sv);
-                        }
-                    }
-                    else
-                    {
-                        if (sv.ID_Lop == ID_Lop && sv.NameSV.Equals(Name))
-                        {
-                            svList.Add(sv);
-                        }
-                    }
-            }
-            }
-            return svList;
-            
-        }
+       
     }
 }
