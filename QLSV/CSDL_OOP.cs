@@ -92,6 +92,19 @@ namespace QLSV
             }
             return lsh;
         }
+        public SV getSVById(string mssv)
+        {
+            SV sv = new SV();
+            foreach(SV s in GetAllSV())
+            {
+                if (mssv.Equals(s.MSSV))
+                {
+                    sv = s;
+                    break;
+                }
+            }
+            return sv;
+        }
         public void deleteSV(String MSSV)
         {
             DataTable dtSV = new DataTable();

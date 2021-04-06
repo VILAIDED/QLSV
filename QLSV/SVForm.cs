@@ -11,7 +11,8 @@ using System.Windows.Forms;
 namespace QLSV
 {
     public partial class SVForm : Form
-    { private Main main;
+    { 
+        private Main main;
         private SV sv;
         public void testDele(SV sv)
         {
@@ -100,7 +101,7 @@ namespace QLSV
                 {
                     CSDL_OOP.Instance.insertSV(sv);
                 }
-                main.Refresh();
+                main.showListSV("");
                 this.Close();
             }
            

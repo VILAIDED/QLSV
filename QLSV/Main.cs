@@ -13,12 +13,78 @@ namespace QLSV
     public partial class Main : Form
     {
         public delegate void passData(SV sv);
-       
+        public bool descending(int i,int j)
+        {
+            return i > j;
+        }
+        public bool ascending(int i, int j)
+        {
+            return i < j;
+        }
+        public List<SV> getListById(List<int> mssvList)
+        {
+            List<SV> svList = new List<SV>();
+            foreach(int mssv in mssvList)
+            {
+                SV sv = CSDL_OOP.Instance.getSVById(mssv.ToString());
+                svList.Add(sv);
+            }
+            return svList;
+            
+        }
+        public void sortByMSSV(Func<int,int,bool> checkSort)
+        {
+            List<int> mssvList = new List<int>();
+            foreach(DataGridViewRow dr in dataGridView1.Rows)
+            {
+                int mssv = Convert.ToInt32(dr.Cells["MSSV"].Value);
+                mssvList.Add(mssv);
+            }
+            for (int i = 0; i < mssvList.Count; i++)
+            {
+                for (int j = 0; j < mssvList.Count; j++)
+                {
+                    if (checkSort(mssvList[i],mssvList[j]))
+                    {
+                        int tmp = mssvList[i];
+                        mssvList[i] = mssvList[j];
+                        mssvList[j] = tmp;
+
+                    }
+                }
+
+            }
+            dataGridView1.DataSource = getListById(mssvList);
+            
+        }
+    
+        
+            public void sortList(Func<bool> checkSort )
+        {
+            List<SV> svList = dataGridView1.DataSource as List<SV>;
+            for(int i = 0; i < svList.Count; i++)
+            {
+                for(int j = 0; j < svList.Count; j++)
+                {
+                    if (Convert.ToInt32(svList[i].MSSV) > Convert.ToInt32(svList[j].MSSV))
+                    {
+                        SV tmp = svList[i];
+                        svList[i] = svList[j];
+                        svList[j] = tmp;
+                        
+                    }
+                }
+             
+            }
+            dataGridView1.DataSource = svList;
+        }
         public Main()
         {
+            
             InitializeComponent();
+           
         }
-        public void setCBB (){
+        public void setCBBLop (){
             lopSH_cbb.Items.Add(new CBBItem { Value = 0, Text = "All" });
             foreach(LSH lsh in CSDL_OOP.Instance.GetAllLSH())
             {
@@ -29,30 +95,41 @@ namespace QLSV
                 }) ;
 
             }
-        }
-        public void showListSV(int ID_Lop,string Name)
-        {
-            dataGridView1.DataSource = CSDL_OOP.Instance.GetListSV(ID_Lop, Name);
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = CSDL_OOP.Instance.GetAllSV();
-            setCBB();
             lopSH_cbb.SelectedIndex = 0;
         }
-
-        private void show_btn_Click(object sender, EventArgs e)
+        public void showListSV(string name)
         {
             CBBItem cb = (CBBItem)lopSH_cbb.SelectedItem;
-            if(cb.Value == 0)
+            if (cb.Value == 0)
             {
                 dataGridView1.DataSource = CSDL_OOP.Instance.GetAllSV();
             }
             else
             {
-                showListSV(cb.Value, "");
+                dataGridView1.DataSource = CSDL_OOP.Instance.GetListSV(cb.Value, name);
             }
+            
+        }
+        private void setCBBSort()
+        {
+            sort_comboBox.Items.AddRange(new CBBItem[]
+           {
+                new CBBItem {Value = 0,Text="ascending"},
+                new CBBItem {Value = 1,Text="descending"},
+           });
+            sort_comboBox.SelectedIndex = 0;
+        }
+        private void Main_Load(object sender, EventArgs e)
+        {
+            setCBBSort();
+            setCBBLop();
+            dataGridView1.DataSource = CSDL_OOP.Instance.GetAllSV();
+
+        }
+
+        private void show_btn_Click(object sender, EventArgs e)
+        {
+            showListSV("");
             
         }
 
@@ -63,13 +140,15 @@ namespace QLSV
             {
                 dataGridView1.DataSource = CSDL_OOP.Instance.GetAllSV();
             }else
-            showListSV(cb.Value, search_txt.Text);
+            showListSV(search_txt.Text);
          
         }
 
         private void add_btn_Click(object sender, EventArgs e)
         {
             SVForm svForm = new SVForm( this);
+            passData pData = new passData(svForm.testDele);
+            pData(new SV());
             svForm.Show();
 
         }
@@ -100,5 +179,21 @@ namespace QLSV
                 MessageBox.Show("Xoa chi nua ban oi");
             }
         }
+
+        private void sort_btn_Click(object sender, EventArgs e)
+        {
+            CBBItem cb = (CBBItem)sort_comboBox.SelectedItem;
+            if(cb.Value == 0)
+            {
+                sortByMSSV(ascending);
+            }
+            else
+            {
+                sortByMSSV(descending);
+            }
+            
+        }
+
+       
     }
 }

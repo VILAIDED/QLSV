@@ -129,6 +129,7 @@ namespace QLSV
             this.sort_btn.TabIndex = 10;
             this.sort_btn.Text = "Sort";
             this.sort_btn.UseVisualStyleBackColor = true;
+            this.sort_btn.Click += new System.EventHandler(this.sort_btn_Click);
             // 
             // sort_comboBox
             // 
@@ -137,6 +138,7 @@ namespace QLSV
             this.sort_comboBox.Name = "sort_comboBox";
             this.sort_comboBox.Size = new System.Drawing.Size(121, 24);
             this.sort_comboBox.TabIndex = 11;
+     
             // 
             // label1
             // 
