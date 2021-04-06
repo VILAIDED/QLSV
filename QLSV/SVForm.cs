@@ -13,6 +13,10 @@ namespace QLSV
     public partial class SVForm : Form
     { private Main main;
         private SV sv;
+        public void testDele(SV sv)
+        {
+            this.sv = sv;
+        }
         public void setCBB()
         {
             if (sv.MSSV == null)
@@ -36,11 +40,19 @@ namespace QLSV
             lsh_cbb.SelectedIndex = 0;
 
         }
-        public SVForm(SV sv,Main main) {
-            this.sv = sv;
+        public SVForm(Main main) {
+       
             InitializeComponent();
             this.main = main;
             
+        }
+        private void setData()
+        {
+            sv.MSSV = txt_MSSV.Text;
+            sv.NameSV = txt_Name.Text;
+            sv.NS = ns_picker.Value;
+            CBBItem item = (CBBItem)lsh_cbb.SelectedItem;
+            sv.ID_Lop = item.Value;
         }
 
         private void SVForm_Load(object sender, EventArgs e)
@@ -61,25 +73,37 @@ namespace QLSV
             setCBB();
             
         }
-
-        private void ok_btn_Click(object sender, EventArgs e)
+        private bool validation()
         {
-            sv.MSSV = txt_MSSV.Text;
-            sv.NameSV = txt_Name.Text;
-            sv.NS = ns_picker.Value;
-            CBBItem item = (CBBItem)lsh_cbb.SelectedItem;
-            sv.ID_Lop = item.Value;
-           
-            if (CSDL_OOP.Instance.svIsExist(sv.MSSV))
+            bool check = false;
+            if(!("".Equals(txt_Name.Text) || "".Equals(txt_MSSV.Text)))
             {
-                CSDL_OOP.Instance.updateSV(sv);
+                return true;
+               
             }
             else
             {
-                CSDL_OOP.Instance.insertSV(sv);
+                MessageBox.Show("Dieu thong tin day du di ban oi");
             }
-            main.Refresh();
-            this.Close();
+            return check;
+        }
+        private void ok_btn_Click(object sender, EventArgs e)
+        {
+            if (validation())
+            {
+                setData();
+                if (CSDL_OOP.Instance.svIsExist(sv.MSSV))
+                {
+                    CSDL_OOP.Instance.updateSV(sv);
+                }
+                else
+                {
+                    CSDL_OOP.Instance.insertSV(sv);
+                }
+                main.Refresh();
+                this.Close();
+            }
+           
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)

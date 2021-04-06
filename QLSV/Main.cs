@@ -12,6 +12,7 @@ namespace QLSV
 {
     public partial class Main : Form
     {
+        public delegate void passData(SV sv);
        
         public Main()
         {
@@ -68,7 +69,7 @@ namespace QLSV
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            SVForm svForm = new SVForm(new SV(), this);
+            SVForm svForm = new SVForm( this);
             svForm.Show();
 
         }
@@ -76,16 +77,28 @@ namespace QLSV
         private void edit_btn_Click(object sender, EventArgs e)
         {
            SV sv = (SV) dataGridView1.CurrentRow.DataBoundItem;
-            SVForm svForm = new SVForm(sv, this);
+           // SVForm svForm = new SVForm(sv, this);
+            SVForm svForm = new SVForm( this);
+            passData pData = new passData(svForm.testDele);
+            pData(sv);
             svForm.Show();
 
         }
 
         private void del_btn_Click(object sender, EventArgs e)
         {
-            SV sv = (SV)dataGridView1.CurrentRow.DataBoundItem;
-            CSDL_OOP.Instance.deleteSV(sv.MSSV);
-            show_btn.PerformClick();
+            if(dataGridView1.Rows.Count > 0)
+            {
+
+           
+                SV sv = (SV)dataGridView1.CurrentRow.DataBoundItem;
+                CSDL_OOP.Instance.deleteSV(sv.MSSV);
+                show_btn.PerformClick();
+            }
+            else
+            {
+                MessageBox.Show("Xoa chi nua ban oi");
+            }
         }
     }
 }

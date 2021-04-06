@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLSV
 {
-    public class SV
+     class SV
     {
         public string MSSV { get; set; }
         public string NameSV { get; set; }
