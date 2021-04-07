@@ -78,6 +78,7 @@ namespace QLSV
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(749, 213);
             this.dataGridView1.TabIndex = 5;
             // 
@@ -138,7 +139,6 @@ namespace QLSV
             this.sort_comboBox.Name = "sort_comboBox";
             this.sort_comboBox.Size = new System.Drawing.Size(121, 24);
             this.sort_comboBox.TabIndex = 11;
-     
             // 
             // label1
             // 

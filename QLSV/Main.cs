@@ -70,8 +70,14 @@ namespace QLSV
             List<int> mssvList = new List<int>();
             foreach (DataGridViewRow dr in dataGridView1.Rows)
             {
-                int mssv = Convert.ToInt32(dr.Cells["MSSV"].Value);
-                mssvList.Add(mssv);
+                try
+                {
+                    int mssv = Convert.ToInt32(dr.Cells["MSSV"].Value);
+                    mssvList.Add(mssv);
+                }catch(Exception ex)
+                {
+                    continue;
+                }
             }
             for (int i = 0; i < mssvList.Count; i++)
             {
@@ -116,14 +122,8 @@ namespace QLSV
         public void showListSV(string name)
         {
             CBBItem cb = (CBBItem)lopSH_cbb.SelectedItem;
-            if (cb.Value == 0)
-            {
-                dataGridView1.DataSource = CSDL_OOP.Instance.GetAllSV();
-            }
-            else
-            {
                 dataGridView1.DataSource = CSDL_OOP.Instance.GetListSV(cb.Value, name);
-            }
+            
             
         }
       
@@ -137,10 +137,6 @@ namespace QLSV
         private void search_btn_Click(object sender, EventArgs e)
         {
             CBBItem cb = (CBBItem)lopSH_cbb.SelectedItem;
-            if ("".Equals(search_txt.Text) && cb.Value == 0)
-            {
-                dataGridView1.DataSource = CSDL_OOP.Instance.GetAllSV();
-            }else
             showListSV(search_txt.Text);
          
         }

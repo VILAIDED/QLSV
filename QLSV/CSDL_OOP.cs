@@ -37,7 +37,15 @@ namespace QLSV
         public List<SV> GetListSV(int ID_Lop, string Name)
         {
             List<SV> svList = new List<SV>();
-            if ("".Equals(Name))
+            if (ID_Lop == 0 && "".Equals(Name))
+            {
+                foreach (SV sv in GetAllSV())
+                {
+
+                        svList.Add(sv); 
+                }
+            }
+            else if ("".Equals(Name))
             {
                 foreach (SV sv in GetAllSV())
                 {

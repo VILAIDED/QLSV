@@ -73,6 +73,7 @@ namespace QLSV
         
         private void setData()
         {
+            
             sv.MSSV = txt_MSSV.Text;
             sv.NameSV = txt_Name.Text;
             sv.NS = ns_picker.Value;
@@ -84,22 +85,27 @@ namespace QLSV
         private bool validation()
         {
             bool check = false;
-            if(!("".Equals(txt_Name.Text) || "".Equals(txt_MSSV.Text)))
+            if("".Equals(txt_Name.Text) || "".Equals(txt_MSSV.Text))
             {
-                return true;
-               
+                MessageBox.Show("Dieu thong tin day du di ban oi");
+
+            }
+            else if(!(int.TryParse(sv.MSSV,out int m)))
+            {
+                MessageBox.Show("MSSV chi nhan so thoi");
             }
             else
             {
-                MessageBox.Show("Dieu thong tin day du di ban oi");
+                check = true; 
             }
             return check;
         }
         private void ok_btn_Click(object sender, EventArgs e)
         {
+            setData();
             if (validation())
             {
-                setData();
+                
                 if (CSDL_OOP.Instance.svIsExist(sv.MSSV))
                 {
                     CSDL_OOP.Instance.updateSV(sv);
