@@ -166,9 +166,16 @@ namespace QLSV
             if(dataGridView1.Rows.Count > 0)
             {
 
-           
-                SV sv = (SV)dataGridView1.CurrentRow.DataBoundItem;
-                CSDL_OOP.Instance.deleteSV(sv.MSSV);
+                
+                string mssv;
+                foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+                {
+                    mssv = row.Cells["MSSV"].Value.ToString();
+                    // mssvList.Add(row.Cells["MSSV"].Value.ToString());
+                    CSDL_OOP.Instance.deleteSV(mssv);
+                }
+                /*SV sv = (SV)dataGridView1.CurrentRow.DataBoundItem;
+                CSDL_OOP.Instance.deleteSV(sv.MSSV);*/
                 show_btn.PerformClick();
             }
             else
