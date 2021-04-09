@@ -62,14 +62,14 @@ namespace QLSV
                     if (ID_Lop == 0)
                     {
 
-                        if (sv.NameSV.Equals(Name))
+                        if (sv.NameSV.Contains(Name))
                         {
                             svList.Add(sv);
                         }
                     }
                     else
                     {
-                        if (sv.ID_Lop == ID_Lop && sv.NameSV.Equals(Name))
+                        if (sv.ID_Lop == ID_Lop && sv.NameSV.Contains(Name))
                         {
                             svList.Add(sv);
                         }
