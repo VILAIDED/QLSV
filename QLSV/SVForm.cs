@@ -11,18 +11,20 @@ using System.Windows.Forms;
 namespace QLSV
 {
     public partial class SVForm : Form
-    { 
-        private Main main;
+    {
+
+        public event ClosePanelHandler ClosePanel;
+        public delegate void ClosePanelHandler(object sender, EventArgs e);
         private SV sv;
         public void passData(SV sv)
         {
             this.sv = sv;
         }
-        public SVForm(Main main)
+        public SVForm()
         {
 
             InitializeComponent();
-            this.main = main;
+           
         }
         private void SVForm_Load(object sender, EventArgs e)
         {
@@ -114,7 +116,10 @@ namespace QLSV
                 {
                     CSDL_OOP.Instance.insertSV(sv);
                 }
-                main.showListSV("");
+                if (ClosePanel != null)
+                {
+                    ClosePanel(this, new EventArgs());
+                }
                 this.Close();
             }
            

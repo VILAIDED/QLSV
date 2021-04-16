@@ -36,6 +36,18 @@ namespace QLSV
         {  
             InitializeComponent(); 
         }
+        public void sortDelegate(Func<SV,SV,int> checkSort) {
+            List<SV> svList = (List<SV>)dataGridView1.DataSource;
+            svList.Sort(delegate (SV sv1, SV sv2)
+            {
+                return (checkSort(sv1, sv2));
+            });
+            dataGridView1.DataSource = svList;
+        }
+        
+
+        
+
         private void Main_Load(object sender, EventArgs e)
         {
             setCBBSort();
@@ -43,18 +55,22 @@ namespace QLSV
             dataGridView1.DataSource = CSDL_OOP.Instance.GetAllSV();
 
         }
+        private void HandleCloseRequest(object sender, EventArgs e)
+        {
+            show_btn.PerformClick();
+        }
         // Sort
-        public bool descending(int i, int j)
+        public int descending(SV sv1, SV sv2)
         {
-            return i > j;
+            return sv1.ID_Lop - sv2.ID_Lop;
         }
 
-        public bool ascending(int i, int j)
+        public int ascending(SV sv1, SV sv2)
         {
-            return i < j;
+            return sv2.ID_Lop - sv1.ID_Lop;
         }
 
-        public List<SV> getListById(List<int> mssvList)
+      /*  public List<SV> getListById(List<int> mssvList)
         {
             List<SV> svList = new List<SV>();
             foreach (int mssv in mssvList)
@@ -64,8 +80,8 @@ namespace QLSV
             }
             return svList;
 
-        }
-        public void sortByMSSV(Func<int, int, bool> checkSort)
+        }*/
+     /*   public void sortByMSSV(Func<int, int, bool> checkSort)
         {
             List<int> mssvList = new List<int>();
             foreach (DataGridViewRow dr in dataGridView1.Rows)
@@ -74,7 +90,7 @@ namespace QLSV
                 {
                     int mssv = Convert.ToInt32(dr.Cells["MSSV"].Value);
                     mssvList.Add(mssv);
-                }catch(Exception ex)
+                }catch
                 {
                     continue;
                 }
@@ -94,7 +110,7 @@ namespace QLSV
 
             }
             dataGridView1.DataSource = getListById(mssvList);
-        }
+        }*/
         public void setCBBLop (){
             lopSH_cbb.Items.Add(new CBBItem { Value = 0, Text = "All" });
             foreach(LSH lsh in CSDL_OOP.Instance.GetAllLSH())
@@ -143,8 +159,9 @@ namespace QLSV
 
         private void add_btn_Click(object sender, EventArgs e)
         {
-            SVForm svForm = new SVForm( this);
+            SVForm svForm = new SVForm();
             passData pData = new passData(svForm.passData);
+            svForm.ClosePanel += HandleCloseRequest;
             pData(new SV());
             svForm.Show();
 
@@ -154,7 +171,8 @@ namespace QLSV
         {
            SV sv = (SV) dataGridView1.CurrentRow.DataBoundItem;
            // SVForm svForm = new SVForm(sv, this);
-            SVForm svForm = new SVForm( this);
+            SVForm svForm = new SVForm();
+            svForm.ClosePanel += HandleCloseRequest;
             passData pData = new passData(svForm.passData);
             pData(sv);
             svForm.Show();
@@ -189,11 +207,13 @@ namespace QLSV
             CBBItem cb = (CBBItem)sort_comboBox.SelectedItem;
             if(cb.Value == 0)
             {
-                sortByMSSV(ascending);
+                sortDelegate(ascending);
+                //sortByMSSV(ascending);
             }
             else
             {
-                sortByMSSV(descending);
+                sortDelegate(descending);
+               // sortByMSSV(descending);
             }
             
         }
