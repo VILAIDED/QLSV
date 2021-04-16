@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,14 +60,18 @@ namespace QLSV
             show_btn.PerformClick();
         }
         // Sort
-        public int descending(SV sv1, SV sv2)
+        private int byMSSV(SV sv1, SV sv2)
         {
-            return sv1.ID_Lop - sv2.ID_Lop;
+            return sv1.MSSV.CompareTo(sv2.MSSV);
         }
 
-        public int ascending(SV sv1, SV sv2)
+        private int byName(SV sv1,SV sv2)
         {
-            return sv2.ID_Lop - sv1.ID_Lop;
+            return sv1.NameSV.CompareTo(sv2.NameSV);
+        }
+        private int byDate(SV sv1,SV sv2)
+        {
+            return sv1.NS.CompareTo(sv2.NS);
         }
 
       /*  public List<SV> getListById(List<int> mssvList)
@@ -129,8 +133,10 @@ namespace QLSV
         {
             sort_comboBox.Items.AddRange(new CBBItem[]
            {
-                new CBBItem {Value = 0,Text="ascending"},
-                new CBBItem {Value = 1,Text="descending"},
+                new CBBItem {Value = 0,Text="MSSV"},
+                new CBBItem {Value = 1,Text="Name"},
+                new CBBItem {Value = 2,Text="NS"},
+
            });
             sort_comboBox.SelectedIndex = 0;
         }
@@ -201,19 +207,22 @@ namespace QLSV
                 MessageBox.Show("Xoa chi nua ban oi");
             }
         }
-
         private void sort_btn_Click(object sender, EventArgs e)
         {
             CBBItem cb = (CBBItem)sort_comboBox.SelectedItem;
             if(cb.Value == 0)
             {
-                sortDelegate(ascending);
+                sortDelegate(byMSSV);
                 //sortByMSSV(ascending);
+            }
+            else if (cb.Value == 1)
+            {
+                sortDelegate(byName);
+                // sortByMSSV(descending);
             }
             else
             {
-                sortDelegate(descending);
-               // sortByMSSV(descending);
+                sortDelegate(byDate);
             }
             
         }
